@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         onCreateClean()
 
         createDummyLists()
-        
+
     }
 
     private fun onCreateClean() {
