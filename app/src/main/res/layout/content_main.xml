@@ -52,19 +52,19 @@
                 <androidx.core.widget.NestedScrollView
                         android:id="@+id/nvThings"
                         android:layout_width="match_parent"
-                        android:layout_height="1000dp" android:fillViewport="true"
+                        android:layout_height="600dp" android:fillViewport="true"
                         android:background="@android:color/black">
                     <LinearLayout android:id="@+id/llThings"
                                   android:layout_width="match_parent"
-                                  android:layout_height="2000dp"
+                                  android:layout_height="wrap_content"
                                   android:orientation="vertical"
                                   android:layout_margin="5dp"
                                   android:background="@color/colorPrimaryDark">
                         <TextView
                                 android:id="@+id/tvThingsContent"
-                                android:text="Things 1 content"
+                                android:text="@string/nested_scroll_text_things"
                                 android:layout_width="match_parent"
-                                android:layout_height="1800dp"
+                                android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:background="@color/colorAccent"
                         />
@@ -81,20 +81,20 @@
                 <androidx.core.widget.NestedScrollView
                         android:id="@+id/nvDetails"
                         android:layout_width="match_parent"
-                        android:layout_height="1000dp" android:fillViewport="true"
+                        android:layout_height="600dp" android:fillViewport="true"
                         android:background="@android:color/black">
                     <LinearLayout
                             android:id="@+id/llDetails"
                             android:layout_width="match_parent"
-                                  android:layout_height="2000dp"
+                                  android:layout_height="wrap_content"
                                   android:orientation="vertical"
                                   android:layout_margin="5dp"
                                   android:background="@color/colorPrimaryDark">
                         <TextView
                                 android:id="@+id/tvDetailsContent"
-                                android:text="Nested 2 content"
+                                android:text="@string/nested_scroll_text_details"
                                 android:layout_width="match_parent"
-                                android:layout_height="1800dp"
+                                android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:background="@color/colorAccent"
                         />
