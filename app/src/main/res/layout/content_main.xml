@@ -13,121 +13,58 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimary">
 
-    >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Root:"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="5dp"
+                android:background="@color/colorAccent"/>
 
-
-        <!--//////////////////////////////////////7-->
-
-        <!--//////////////////////////////////////7-->
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Root"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="5dp"
-            android:background="@color/colorAccent"
-    />
-
-    /*
-    tools:layout_editor_absoluteY="155dp"
-    tools:layout_editor_absoluteX="8dp"
-    */
         <ScrollView
                 android:id="@+id/scrollViewRoot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/holo_orange_dark"
-                android:paddingRight="40dp"
-        >
+                android:paddingRight="40dp">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-
                     android:layout_margin="5dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/colorPrimary">
 
-            >
                 <TextView
-                        android:text="Things"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/textViewThings"
-                        android:layout_margin="5dp"
-                        android:background="@color/colorAccent"
-                />
-                <androidx.core.widget.NestedScrollView
-                        android:id="@+id/scrollViewThings"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="@color/colorPrimaryDark"
-                        android:paddingRight="40dp"
-                        android:fillViewport="true">
-                    <TextView
-                            android:text="TThings content"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/textViewThingsContent"
-                            android:layout_margin="5dp"
-                            android:background="@color/colorAccent"
-                    />
-                </androidx.core.widget.NestedScrollView>
-                <TextView
-                        android:text="Details"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/textViewDetails"
-                        android:layout_margin="5dp"
-                        android:background="@color/colorAccent"
-                />
-                <androidx.core.widget.NestedScrollView
-                        android:fillViewport="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/scrollViewDetails"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingRight="50dp"
-                >
-                    <TextView
-                            android:text="Details Content"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" android:id="@+id/textViewDetailsContent"
-                            android:layout_margin="5dp"
-                            android:background="@color/colorAccent"
-                    />
-                </androidx.core.widget.NestedScrollView>
-                <TextView
-                        android:text="Nested1"
+                        android:text="Nested 1:"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textViewNested1"
                         android:layout_margin="5dp"
-                        android:background="@color/colorAccent"
-                />
+                        android:background="@color/colorAccent"/>
                 <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp" android:fillViewport="true"
-                        android:background="@android:color/black"
-                >
+                        android:layout_height="1000dp" android:fillViewport="true"
+                        android:background="@android:color/black">
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="800dp"
+                                  android:layout_height="2000dp"
                                   android:orientation="vertical"
                                   android:layout_margin="5dp"
-                                  android:background="@color/colorPrimaryDark"
-                    >
+                                  android:background="@color/colorPrimaryDark">
                         <TextView
-                                android:text="TextView"
+                                android:text="Nested 1 content"
                                 android:layout_width="match_parent"
-                                android:layout_height="700dp" android:id="@+id/textView3"
+                                android:layout_height="1800dp" android:id="@+id/textView3"
                                 android:layout_margin="5dp"
                                 android:background="@color/colorAccent"
                         />
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
                 <TextView
-                        android:text="Nested2"
+                        android:text="Nested 2:"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/textViewNested2"
                         android:layout_margin="5dp"
@@ -135,18 +72,18 @@
                 />
                 <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp" android:fillViewport="true"
+                        android:layout_height="1000dp" android:fillViewport="true"
 
                         android:background="@android:color/black">
                     <LinearLayout android:layout_width="match_parent"
-                                  android:layout_height="1800dp"
+                                  android:layout_height="2000dp"
                                   android:orientation="vertical"
                                   android:layout_margin="5dp"
                                   android:background="@color/colorPrimaryDark">
                         <TextView
-                                android:text="TextView"
+                                android:text="Nested 2 content"
                                 android:layout_width="match_parent"
-                                android:layout_height="1700dp" android:id="@+id/textView4"
+                                android:layout_height="1800dp" android:id="@+id/textView4"
                                 android:layout_margin="5dp"
                                 android:background="@color/colorAccent"
                         />
