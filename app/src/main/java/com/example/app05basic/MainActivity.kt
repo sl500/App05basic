@@ -1,6 +1,8 @@
 package com.example.app05basic
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
@@ -12,6 +14,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.view.setPadding
+import androidx.core.widget.NestedScrollView
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDateTime
@@ -583,4 +586,15 @@ interface thingsToTrack : daten{
     //var datenliste4: kotlin.collections.MutableIterable<daten>
     // map
     //var datenliste5: kotlin.collections.MutableMap<daten> //A modifiable collection that holds pairs of objects (keys and values) and supports efficiently retrieving the value corresponding to each key. Map keys are unique; the map holds only one value for each key
+}
+class MyNestedScrollView(context: Context, attrs: AttributeSet?) : NestedScrollView(context, attrs) {
+
+    /**/override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int) {
+        super.onNestedScroll(target, dxConsumed, dyConsumed, 0, 0, type)
+    }
+
+    override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
+        return super.onNestedFling(target, velocityX, velocityY, true)
+    }
+    /**/
 }

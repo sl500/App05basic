@@ -116,7 +116,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/et2"
                     android:textAlignment="center"
                     android:background="@android:color/darker_gray"
-                    android:text="2" tools:text="123"/>
+                    android:text="2" tools:text="123" android:focusableInTouchMode="false"/>
             <EditText
                     android:id="@+id/et2"
                     android:layout_width="0dp"
@@ -129,7 +129,7 @@
                     android:textAlignment="center"
                     android:inputType="text"
                     android:ems="10"
-                    android:text="output"/>
+                    android:text="output" android:focusableInTouchMode="false"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -189,12 +189,12 @@
 
                     android:text="+ new Thing" android:textAlignment="center"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <ScrollView
+        <com.example.app05basic.MyNestedScrollView
             android:id="@+id/svRoot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/holo_orange_dark"
-            android:paddingRight="30dp">
+            android:paddingRight="20dp">
             <LinearLayout
                 android:id="@+id/llRoot"
                 android:layout_width="match_parent"
@@ -284,7 +284,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </com.example.app05basic.MyNestedScrollView>
 
     </LinearLayout>
 
