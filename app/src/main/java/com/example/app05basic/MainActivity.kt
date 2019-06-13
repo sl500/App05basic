@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
         btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
         // add group
-        val btnAddGroup = findViewById<Button>(R.id.btnAddGroup)
-        btnAddGroup?.setOnClickListener { addGroupOfElements() }
+        val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
+        btnListAllThingsInThingsScrollable?.setOnClickListener { listAllThingsInThingScrollable() }
 
         // del all of id
         val btnDel = findViewById<Button>(R.id.btnDel)
@@ -42,6 +42,29 @@ class MainActivity : AppCompatActivity() {
         //dell this one
         val btnDelOne = findViewById<Button>(R.id.btnDelOne)
         btnDelOne?.setOnClickListener { deleteOne(1) }
+
+        //btn Add new Thing to Thing list
+        val btnAddNewThingToThingList = findViewById<Button>(R.id.btnAddNewThing)
+        btnAddNewThingToThingList?.setOnClickListener{addNewThingToThingList()}
+    }
+
+    private fun addNewThingToThingList() {
+        // hole name und wertart für das neue thing
+        val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+        val etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+
+        /*
+        when (etAddNewThingValue.text.toString()) {
+            "i" -> var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),MutableList<daten>())
+            /*"f" ->
+            "b" -> */
+        }
+        */
+        //var listX = mutableListOf<daten>()
+        var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
+        listOfThings.add(newThing)
+        //new aufbauen
+        listAllThingsInThingScrollable()
 
     }
 
@@ -56,8 +79,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun addGroupOfElements() {
+    private fun listAllThingsInThingScrollable() {
         //leere zuerst die details liste
+        deleteAll()
         clearDetailsScrollsList()
         //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
 
@@ -105,24 +129,24 @@ class MainActivity : AppCompatActivity() {
             llForGroup.addView(etId)
 
 
-            // add READ button
-            var btnRead = Button(this)
+            // add SHOW Datapoints button
+            var btnShowDatapointsOfThing = Button(this)
             //btnShow1.setText(R.string.show_text)
-            btnRead.text = "+"+(base+i*10+3).toString()
+            btnShowDatapointsOfThing.text = "s"+(base+i*10+3).toString()
             //btnShow.setText(i)
             //btnShow.setText(1000+i)
-            btnRead.setId(base+i*10+3)
+            btnShowDatapointsOfThing.setId(base+i*10+3)
 
-            btnRead.layoutParams =
+            btnShowDatapointsOfThing.layoutParams =
                 LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
-            btnRead.setOnClickListener {
-                this.thingRead(item,i)
+            btnShowDatapointsOfThing.setOnClickListener {
+                this.showDatapointsOfThing(item,i)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
-            llForGroup.addView(btnRead)
+            llForGroup.addView(btnShowDatapointsOfThing)
 
             // add button Delete
             var btnDelete = Button(this)
@@ -137,7 +161,7 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnDelete.setOnClickListener {
-                this.clickBtn(btnDelete)
+                this.deleteThing(btnDelete)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnDelete)
@@ -156,7 +180,7 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnUpdate.setOnClickListener {
-                this.clickBtn(btnUpdate)
+                this.deleteThing(btnUpdate)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnUpdate)
@@ -247,15 +271,17 @@ class MainActivity : AppCompatActivity() {
         }*/
     }
 
-    private fun clickBtn(btn: Button) {
+    private fun deleteThing(btn: Button) {
 
         // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //OKAY("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO("war hilfsbtn, sollte funktion bekommen entweder delete ")
         val editTextOutput = findViewById<EditText>(R.id.et2)
         editTextOutput.setText(btn.id.toString())
+
         Toast.makeText(this@MainActivity,  R.string.welcome_message, Toast.LENGTH_LONG).show()
     }
-    private fun thingRead(thing: Things, id: Int) {
+    private fun showDatapointsOfThing(thing: Things, id: Int) {
         // leere zuerst details view
         clearDetailsScrollsList()
 
@@ -277,7 +303,7 @@ class MainActivity : AppCompatActivity() {
 
         // add button to add datapoint
         var btnAddDatapoint = Button(this)
-        btnAddDatapoint.text = "+"+(base+0*10+2).toString()
+        btnAddDatapoint.text = "+ "+(base+0*10+2).toString()
         btnAddDatapoint.setId(base+0*10+2)
         btnAddDatapoint.layoutParams =
             LinearLayout.LayoutParams(
