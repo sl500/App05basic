@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         // add amount
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
-        btnAddThingToTrack?.setOnClickListener { addThingToTrack() }
+        btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
         // add group
         val btnAddGroup = findViewById<Button>(R.id.btnAddGroup)
         btnAddGroup?.setOnClickListener { addGroupOfElements() }
@@ -200,18 +200,23 @@ class MainActivity : AppCompatActivity() {
         linearLayout?.removeAllViews()
     }
 
-    private fun addThingToTrack() {
+    private fun makeAddNewThingAreaVisible() {
         var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
         //addThingContainerToHideOrShow.visibility = View.VISIBLE
         if  (addThingContainerToHideOrShow.visibility == View.VISIBLE) {
             addThingContainerToHideOrShow.visibility = View.GONE
+            // Werte zurücksetzen
+            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+            etAddNewThingName.setText("newThing")
+            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+            etAddNewThingValue.setText("ifb")
         } else {
             addThingContainerToHideOrShow.visibility = View.VISIBLE
         }
 
         //ALT////////////////////////////////////////
-
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+/*
+        //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
         val linearLayout = findViewById<LinearLayout>(R.id.llThings)
 
         val editTextNumber = findViewById<EditText>(R.id.et1)
@@ -239,7 +244,7 @@ class MainActivity : AppCompatActivity() {
 
             // Add Button to LinearLayout
             linearLayout?.addView(btnShow)
-        }
+        }*/
     }
 
     private fun clickBtn(btn: Button) {
