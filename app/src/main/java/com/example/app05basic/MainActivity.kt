@@ -28,13 +28,15 @@ class MainActivity : AppCompatActivity() {
         onCreateClean()
 
         createDummyLists()
+        listAllThingsInThingScrollable()
+
         var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
         addThingContainerToHideOrShow.visibility = View.GONE
 
         // add amount
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
         btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
-        // add group
+        // list things
         val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
         btnListAllThingsInThingsScrollable?.setOnClickListener { listAllThingsInThingScrollable() }
 
