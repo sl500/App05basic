@@ -5,6 +5,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
@@ -24,10 +25,12 @@ class MainActivity : AppCompatActivity() {
         onCreateClean()
 
         createDummyLists()
+        var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
+        addThingContainerToHideOrShow.visibility = View.GONE
 
         // add amount
-        val btnAdd = findViewById<Button>(R.id.btnAdd)
-        btnAdd?.setOnClickListener { addAmountOfElements() }
+        val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
+        btnAddThingToTrack?.setOnClickListener { addThingToTrack() }
         // add group
         val btnAddGroup = findViewById<Button>(R.id.btnAddGroup)
         btnAddGroup?.setOnClickListener { addGroupOfElements() }
@@ -197,7 +200,17 @@ class MainActivity : AppCompatActivity() {
         linearLayout?.removeAllViews()
     }
 
-    private fun addAmountOfElements() {
+    private fun addThingToTrack() {
+        var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
+        //addThingContainerToHideOrShow.visibility = View.VISIBLE
+        if  (addThingContainerToHideOrShow.visibility == View.VISIBLE) {
+            addThingContainerToHideOrShow.visibility = View.GONE
+        } else {
+            addThingContainerToHideOrShow.visibility = View.VISIBLE
+        }
+
+        //ALT////////////////////////////////////////
+
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         val linearLayout = findViewById<LinearLayout>(R.id.llThings)
 
