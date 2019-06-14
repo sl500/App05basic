@@ -210,10 +210,13 @@
                         android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:background="@color/colorAccent"/>
-                <androidx.core.widget.NestedScrollView
+                <com.bskim.maxheightscrollview.widgets.MaxHeightNestedScrollView
                         android:id="@+id/nvThings"
                         android:layout_width="match_parent"
-                        android:layout_height="600dp" android:fillViewport="true"
+                        
+                        android:fillViewport="true"
+                        android:layout_height="match_parent"
+                        app:maxHeight="300dp"
                         android:background="@android:color/black">
                     <LinearLayout android:id="@+id/llThings"
                                   android:layout_width="match_parent"
@@ -231,7 +234,7 @@
                                 android:visibility="invisible"
                         />
                     </LinearLayout>
-                </androidx.core.widget.NestedScrollView>
+                </com.bskim.maxheightscrollview.widgets.MaxHeightNestedScrollView>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:id="@+id/llDetailsHeader"
                               android:orientation="horizontal"
