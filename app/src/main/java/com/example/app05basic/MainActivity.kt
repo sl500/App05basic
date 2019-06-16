@@ -7,10 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.setPadding
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         configerButons()
 
-        refreshThingsScrollable()
+        //refreshThingsScrollable()
     }
 
     private fun configerButons() {
@@ -90,6 +87,12 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
 
+            //füge nummer hinzu
+            var etNummer = TextView(this)
+            etNummer.setText(listOfThings.indexOf(item).toString())
+            etNummer.setId(base+i*10+8)
+            llForGroup.addView(etNummer)
+
 
             // add SHOW Datapoints button
             var btnShowDatapointsOfThing = Button(this)
@@ -124,6 +127,7 @@ class MainActivity : AppCompatActivity() {
                 )
             btnDelete.setOnClickListener {
                 this.writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btnDelete)
+                this.deleteThisThingFromThingListAndRefreshList(i,item)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnDelete)
@@ -149,11 +153,13 @@ class MainActivity : AppCompatActivity() {
 
 
             // Füge texte hinzu id
+            /**/
             var etId = EditText(this)
             //editTextGroup.setText(R.string.new_group_item_name)
             etId.setText(item.id.toString())
             etId.id=base+i*10+2
             llForGroup.addView(etId)
+            /**/
 
             // Füge texte hinzu NAME
             var etName = EditText(this)
@@ -171,6 +177,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun deleteThisThingFromThingListAndRefreshList(i: Int, item: Things) {
+        //delete item
+        listOfThings.removeAt(i)
+        //listOfThings.remove(item)
+        refreshThingsScrollable()
+    }
+
     //NEW
     private fun addNewThingToThingListAndRefresh() {
         // hole name und wertart für das neue thing
@@ -185,7 +198,7 @@ class MainActivity : AppCompatActivity() {
         }
         */
         //var listX = mutableListOf<daten>()
-        var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
+        var newThing = Things(etAddNewThingName.text.toString(),(1000*Math.random()).toInt(), LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
         listOfThings.add(newThing)
         //new aufbauen
         refreshThingsScrollable()
@@ -539,7 +552,7 @@ class MainActivity : AppCompatActivity() {
             DatenpunktInt("things1",32, LocalDateTime.now(), LocalDateTime.now(),13),
             DatenpunktInt("things1",42, LocalDateTime.now(), LocalDateTime.now(),14)
         )
-        var dummyThing1: Things = Things("t1_kg",142, LocalDateTime.now(), LocalDateTime.now(),datapointList1)
+        var dummyThing1: Things = Things("t1_kg",(1000*Math.random()).toInt(), LocalDateTime.now(), LocalDateTime.now(),datapointList1)
 
         var datapointList2 = mutableListOf<daten>(
             DatenpunktInt("things2",21, LocalDateTime.now(), LocalDateTime.now(),21),
@@ -547,7 +560,7 @@ class MainActivity : AppCompatActivity() {
             DatenpunktInt("things2",23, LocalDateTime.now(), LocalDateTime.now(),23),
             DatenpunktInt("things2",24, LocalDateTime.now(), LocalDateTime.now(),24)
         )
-        var dummyThing2: Things = Things("t2_cm",223, LocalDateTime.now(), LocalDateTime.now(),datapointList2)
+        var dummyThing2: Things = Things("t2_cm",(1000*Math.random()).toInt(), LocalDateTime.now(), LocalDateTime.now(),datapointList2)
 
         listOfThings = mutableListOf<Things>(dummyThing1,dummyThing2)
         //var n = listOfThings.size
