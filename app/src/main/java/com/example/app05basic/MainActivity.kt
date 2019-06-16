@@ -29,24 +29,28 @@ class MainActivity : AppCompatActivity() {
         refreshThingsScrollable()
 
         configerButons()
+
+        refreshThingsScrollable()
     }
 
     private fun configerButons() {
+        //TOP BUTTONS:
         // add amount
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
         btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
-        
+
         // list things
-        val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
-        btnListAllThingsInThingsScrollable?.setOnClickListener { refreshThingsScrollable() }
+        //val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
+        //btnListAllThingsInThingsScrollable?.setOnClickListener { refreshThingsScrollable() }
 
         // del all of id
-        val btnDel = findViewById<Button>(R.id.btnDel)
-        btnDel?.setOnClickListener { removeAllViewsFromThingsLL() }
+        //val btnDel = findViewById<Button>(R.id.btnDel)
+        //btnDel?.setOnClickListener { removeAllViewsFromThingsLL() }
 
         //dell this one
-        val btnDelOne = findViewById<Button>(R.id.btnDelOne)
-        btnDelOne?.setOnClickListener { removeOneSpecificViewGroupFromThingLL(1) }
+        //val btnDelOne = findViewById<Button>(R.id.btnDelOne)
+        //btnDelOne?.setOnClickListener { removeOneSpecificViewGroupFromThingLL(1) }
+
 
         //btn Add new Thing to Thing list
         val btnAddNewThingToThingList = findViewById<Button>(R.id.btnAddNewThing)
@@ -54,26 +58,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     //THINGS
-
-    //NEW
-    private fun addNewThingToThingListAndRefresh() {
-        // hole name und wertart für das neue thing
-        val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
-        val etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
-
-        /*
-        when (etAddNewThingValue.text.toString()) {
-            "i" -> var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),MutableList<daten>())
-            /*"f" ->
-            "b" -> */
-        }
-        */
-        //var listX = mutableListOf<daten>()
-        var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
-        listOfThings.add(newThing)
-        //new aufbauen
-        refreshThingsScrollable()
-    }
 
     //NEW
     //listAllThingsInThingScrollable
@@ -188,6 +172,26 @@ class MainActivity : AppCompatActivity() {
             linearLayoutToFill?.addView(llForGroup)
             i++
         }
+    }
+
+    //NEW
+    private fun addNewThingToThingListAndRefresh() {
+        // hole name und wertart für das neue thing
+        val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+        val etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+
+        /*
+        when (etAddNewThingValue.text.toString()) {
+            "i" -> var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),MutableList<daten>())
+            /*"f" ->
+            "b" -> */
+        }
+        */
+        //var listX = mutableListOf<daten>()
+        var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
+        listOfThings.add(newThing)
+        //new aufbauen
+        refreshThingsScrollable()
     }
 
     //DATAPOINTS
