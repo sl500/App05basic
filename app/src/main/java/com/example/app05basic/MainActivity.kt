@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
         createDummyLists()
         refreshThingsScrollable()
 
-        var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
-        addThingContainerToHideOrShow.visibility = View.GONE
-
         // add amount
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
         btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
