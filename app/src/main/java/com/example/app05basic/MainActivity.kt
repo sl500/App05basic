@@ -34,7 +34,12 @@ class MainActivity : AppCompatActivity() {
         //TOP BUTTONS:
         // add amount
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
-        btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
+        btnAddThingToTrack?.setOnClickListener {
+            switchElementVisibility(R.id.addNewThingContainer)
+            findEditTextAndSetText("thing", R.id.etNewThingName)
+            findEditTextAndSetText("ifb", R.id.etNewThingValue)
+
+        }
 
         // list things
         //val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
@@ -52,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         //btn Add new Thing to Thing list
         val btnAddNewThingToThingList = findViewById<Button>(R.id.btnAddNewThing)
         btnAddNewThingToThingList?.setOnClickListener { addNewThingToThingListAndRefresh() }
+    }
+
+    private fun findEditTextAndSetText(s: String, id: Int) {
+        var et = findViewById<EditText>(id)
+        et.setText(s)
     }
 
     //THINGS
@@ -151,7 +161,6 @@ class MainActivity : AppCompatActivity() {
             }
             llForGroup.addView(btnUpdate)
 
-
             // Füge texte hinzu id
             /**/
             var etId = EditText(this)
@@ -159,7 +168,6 @@ class MainActivity : AppCompatActivity() {
             etId.setText(item.id.toString())
             etId.id=base+i*10+2
             llForGroup.addView(etId)
-            /**/
 
             // Füge texte hinzu NAME
             var etName = EditText(this)
@@ -245,32 +253,10 @@ class MainActivity : AppCompatActivity() {
             //string id.toString() value.toString() btn update, delete, add
 
             //füge nummer hinzu
-            var etNummer = TextView(this)
-            etNummer.setText(thing.datenliste.indexOf(item).toString())
-            etNummer.setId(base+i*10+8)
-            llForGroup.addView(etNummer)
-
-            // Füge texte hinzu NAME
-            var etName = EditText(this)
-            etName.setText(item.name)
-            etName.id = (base + i * 10 + 1)
-            llForGroup.addView(etName)
-
-            // Füge texte hinzu id
-            var etId = EditText(this)
-            etId.setText(item.id.toString())
-            etId.id = base + i * 10 + 2
-            llForGroup.addView(etId)
-
-            // Füge texte hinzu value
-            var etValue = EditText(this)
-            when (item) {
-                is datenpunktInt -> etValue.setText((item).value.toString())
-                is datenpunktFloat -> etValue.setText((item).value.toString())
-                is datenpunktBoolean -> etValue.setText((item).value.toString())
-            }
-            etValue.id = base + i * 10 + 3
-            llForGroup.addView(etValue)
+            var etNummerDatapoint = TextView(this)
+            etNummerDatapoint.setText(thing.datenliste.indexOf(item).toString())
+            etNummerDatapoint.setId(base+i*10+8)
+            llForGroup.addView(etNummerDatapoint)
 
             // add READ button
             var btnRead = Button(this)
@@ -326,7 +312,29 @@ class MainActivity : AppCompatActivity() {
             }
             llForGroup.addView(btnUpdate)
 
-            /*            */
+            // Füge texte hinzu NAME
+            var etName = EditText(this)
+            etName.setText(item.name)
+            etName.id = (base + i * 10 + 1)
+            llForGroup.addView(etName)
+
+            // Füge texte hinzu id
+            var etId = EditText(this)
+            etId.setText(item.id.toString())
+            etId.id = base + i * 10 + 2
+            llForGroup.addView(etId)
+
+            // Füge texte hinzu value
+            var etValue = EditText(this)
+            when (item) {
+                is datenpunktInt -> etValue.setText((item).value.toString())
+                is datenpunktFloat -> etValue.setText((item).value.toString())
+                is datenpunktBoolean -> etValue.setText((item).value.toString())
+            }
+            etValue.id = base + i * 10 + 3
+            llForGroup.addView(etValue)
+
+
             // Add ll to LinearLayoutToFill
             linearLayoutToFill?.addView(llForGroup)
         }
@@ -424,70 +432,13 @@ class MainActivity : AppCompatActivity() {
         linearLayoutToClear2.removeAllViews()
     }
 
-    // BOTH things and datapoints
-    // TODO: mit der anderen Funktion zusammenführen durch paramter
-    private fun makeAddNewDatapointAreaVisible() {
-        var addNewDatapointContainerToHideOrShow =
-            findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
-        //addThingContainerToHideOrShow.visibility = View.VISIBLE
-        if (addNewDatapointContainerToHideOrShow.visibility == View.VISIBLE) {
-            addNewDatapointContainerToHideOrShow.visibility = View.GONE
-            // Werte zurücksetzen
-            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
-            etAddNewThingName.setText("newThing")
-            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
-            etAddNewThingValue.setText("ifb")
+    private fun switchElementVisibility(id: Int) {
+        var elementToMakeVisible = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(id)
+        if  (elementToMakeVisible.visibility == View.VISIBLE) {
+            elementToMakeVisible.visibility = View.GONE
         } else {
-            addNewDatapointContainerToHideOrShow.visibility = View.VISIBLE
+            elementToMakeVisible.visibility = View.VISIBLE
         }
-    }
-
-    // TODO: mit der anderen Funktion zusammenführen durch paramter
-    private fun makeAddNewThingAreaVisible() {
-        var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
-        //addThingContainerToHideOrShow.visibility = View.VISIBLE
-        if  (addThingContainerToHideOrShow.visibility == View.VISIBLE) {
-            addThingContainerToHideOrShow.visibility = View.GONE
-            // Werte zurücksetzen
-            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
-            etAddNewThingName.setText("newThing")
-            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
-            etAddNewThingValue.setText("ifb")
-        } else {
-            addThingContainerToHideOrShow.visibility = View.VISIBLE
-        }
-
-        //ALT////////////////////////////////////////
-/*
-        //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
-
-        val editTextNumber = findViewById<EditText>(R.id.et1)
-        val anzahlInt = editTextNumber.text.toString().toInt()
-        //var anzahlInt = anzahlString.toInt()
-        //var anzahlInt = 5
-        //if (anzahlInt != null) {
-        for (i in 1..anzahlInt) {
-            var btnShow = Button(this)
-            btnShow.setText(R.string.show_text)
-            btnShow.hint=(1000+i).toString()
-            //btnShow.setText(i)
-            //btnShow.setText(1000+i)
-            btnShow.setId(1000+i)
-
-            btnShow.layoutParams =
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            btnShow.setOnClickListener {
-                this.clickBtn(btnShow)
-                //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
-            }
-
-            // Add Button to LinearLayout
-            linearLayout?.addView(btnShow)
-        }*/
     }
 
     //OLD STUFF
