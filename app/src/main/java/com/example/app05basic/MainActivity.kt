@@ -39,17 +39,19 @@ class MainActivity : AppCompatActivity() {
 
         // del all of id
         val btnDel = findViewById<Button>(R.id.btnDel)
-        btnDel?.setOnClickListener { deleteAll() }
+        btnDel?.setOnClickListener { removeAllViewsFromThingsLL() }
 
         //dell this one
         val btnDelOne = findViewById<Button>(R.id.btnDelOne)
-        btnDelOne?.setOnClickListener { deleteOne(1) }
+        btnDelOne?.setOnClickListener { removeOneSpecificViewGroupFromThingLL(1) }
 
         //btn Add new Thing to Thing list
         val btnAddNewThingToThingList = findViewById<Button>(R.id.btnAddNewThing)
         btnAddNewThingToThingList?.setOnClickListener{addNewThingToThingList()}
     }
 
+    //THINGS
+    //NEW
     private fun addNewThingToThingList() {
         // hole name und wertart für das neue thing
         val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
@@ -67,24 +69,13 @@ class MainActivity : AppCompatActivity() {
         listOfThings.add(newThing)
         //new aufbauen
         listAllThingsInThingScrollable()
-
     }
 
-    private fun onCreateClean() {
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-    }
-
-
+    //NEW
     private fun listAllThingsInThingScrollable() {
-        //leere zuerst die details liste
-        deleteAll()
-        clearDetailsScrollsList()
+        //leere zuerst beide View listen
+        removeAllViewsFromThingsLL()
+        removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
         //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
 
         //hole den fillContainer
@@ -163,7 +154,7 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnDelete.setOnClickListener {
-                this.deleteThing(btnDelete)
+                this.writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btnDelete)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnDelete)
@@ -182,7 +173,7 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnUpdate.setOnClickListener {
-                this.deleteThing(btnUpdate)
+                this.writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btnUpdate)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnUpdate)
@@ -194,7 +185,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteOne(idParamToDelte: Int) {
+    //OLD
+    private fun removeOneSpecificViewGroupFromThingLL(idParamToDelte: Int) {
         //R.id.editTextOutput
         //idParamToDelte
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -217,15 +209,28 @@ class MainActivity : AppCompatActivity() {
         }
         //linearLayout?.removeView(elementToDelete)
         editTextNumber.setText("output")
-
     }
 
-    private fun deleteAll() {
+    //OLD and umständlich
+    private fun writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btn: Button) {
+
+        // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
+        //OKAY("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO("war hilfsbtn, sollte funktion bekommen entweder delete ")
+        val editTextOutput = findViewById<EditText>(R.id.et2)
+        editTextOutput.setText(btn.id.toString())
+
+        Toast.makeText(this@MainActivity,  R.string.welcome_message, Toast.LENGTH_LONG).show()
+    }
+
+    //OLD
+    private fun removeAllViewsFromThingsLL() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         val linearLayout = findViewById<LinearLayout>(R.id.llThings)
         linearLayout?.removeAllViews()
     }
 
+    // BOTH things and datapoints
     // TODO: mit der anderen Funktion zusammenführen durch paramter
     private fun makeAddNewDatapointAreaVisible() {
         var addNewDatapointContainerToHideOrShow =
@@ -290,20 +295,11 @@ class MainActivity : AppCompatActivity() {
             linearLayout?.addView(btnShow)
         }*/
     }
+    
 
-    private fun deleteThing(btn: Button) {
-
-        // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
-        //OKAY("not implemented") //To change body of created functions use File | Settings | File Templates.
-        //TODO("war hilfsbtn, sollte funktion bekommen entweder delete ")
-        val editTextOutput = findViewById<EditText>(R.id.et2)
-        editTextOutput.setText(btn.id.toString())
-
-        Toast.makeText(this@MainActivity,  R.string.welcome_message, Toast.LENGTH_LONG).show()
-    }
     private fun showDatapointsOfThing(thing: Things, id: Int) {
         // leere zuerst details view
-        clearDetailsScrollsList()
+        removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
 
         // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
         //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -352,9 +348,9 @@ class MainActivity : AppCompatActivity() {
             )
         btnClearDetailsList.setOnClickListener {
             //var dp: DatenpunktInt = item
-            //OKAY:write add clearDetailsScrollsList()
+            //OKAY:write add removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
             //this.dataRead(item,i)
-            clearDetailsScrollsList()
+            removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
             //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
         }
         linearLayoutToFillHeader.addView(btnClearDetailsList)
@@ -371,8 +367,8 @@ class MainActivity : AppCompatActivity() {
             )
         btnDeleteAllDatapoint.setOnClickListener {
             //var dp: DatenpunktInt = item
-            //OKAY:write add delteAllDatapoints()
-            delteAllDatapoints(thing)
+            //OKAY:write add DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea()
+            DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea(thing)
             //this.dataRead(item,i)
             //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
         }
@@ -499,19 +495,21 @@ class MainActivity : AppCompatActivity() {
             LocalDateTime.now(),1))
     }
 
-    private fun delteAllDatapoints(thing: Things) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        thing.datenliste.removeIf { item -> item.id > 0 }
-        clearDetailsScrollsList()
+    private fun DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea(thing: Things) {
+        thing.datenliste.clear()
+        //thing.datenliste.removeIf { item -> item.id > 0 }
+        removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
     }
 
-    private fun clearDetailsScrollsList() {
+    private fun removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         val linearLayoutToClear = findViewById<LinearLayout>(R.id.llDetails)
         linearLayoutToClear.removeAllViews()
         val linearLayoutToClear2 = findViewById<LinearLayout>(R.id.llDetailsHeader)
         linearLayoutToClear2.removeAllViews()
     }
+
+    //BASIC STUF
 
     private fun createDummyLists() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -550,6 +548,15 @@ class MainActivity : AppCompatActivity() {
         //var n = listOfThings.size
     }
 
+    private fun onCreateClean() {
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
