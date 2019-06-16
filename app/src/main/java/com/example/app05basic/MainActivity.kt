@@ -1,8 +1,6 @@
 package com.example.app05basic
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
@@ -14,7 +12,6 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.view.setPadding
-import androidx.core.widget.NestedScrollView
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDateTime
@@ -571,65 +568,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class Things(name:String, id: Int,createDate: java.time.LocalDateTime, updateDate: java.time.LocalDateTime, datenliste: kotlin.collections.MutableList<daten> ) : thingsToTrack {
-    //werte von interface daten
-    override var name: String = name
-    override var id: Int = id
-    override var createDate : java.time.LocalDateTime = createDate
-    override var updateDate : java.time.LocalDateTime = updateDate
-    override var datenliste: kotlin.collections.MutableList<daten> = datenliste
-}
-class DatenpunktInt(parentname:String, id: Int,createDate: java.time.LocalDateTime, updateDate: java.time.LocalDateTime, value: Int):datenpunktInt{
-    override var name: String = parentname
-    override var id: Int = id
-    override var createDate : java.time.LocalDateTime = createDate
-    override var updateDate : java.time.LocalDateTime = updateDate
-
-    override var value: Int = value
-}
-
-abstract class daten1 {
-    abstract var name: String
-    //abstract var id: Int
-    //abstract var createDate : java.time.LocalDateTime
-    //abstract var updateDate : java.time.LocalDateTime
-}
-interface daten {
-    var name: String
-    var id: Int
-    var createDate : java.time.LocalDateTime
-    var updateDate : java.time.LocalDateTime
-}
-interface datenpunktInt : daten{
-    var value: Int
-}
-interface datenpunktFloat : daten{
-    var value: Float
-}
-interface datenpunktBoolean : daten{
-    var value: Boolean
-}
-
-interface thingsToTrack : daten{
-    // set und mutablecollection
-    //var datenliste1: kotlin.collections.MutableSet<daten>        //A generic unordered collection of elements that supports adding and removing elements and does not support duplicate elements.
-    // list and mutablecollection
-    var datenliste: kotlin.collections.MutableList<daten>       //A generic   ordered collection of elements that supports adding and removing elements.
-    // collection and mutableiterable
-    //var datenliste3: kotlin.collections.MutableCollection<daten> //A generic           collection of elements that supports adding and removing elements.
-    // iterable
-    //var datenliste4: kotlin.collections.MutableIterable<daten>
-    // map
-    //var datenliste5: kotlin.collections.MutableMap<daten> //A modifiable collection that holds pairs of objects (keys and values) and supports efficiently retrieving the value corresponding to each key. Map keys are unique; the map holds only one value for each key
-}
-class MyNestedScrollView(context: Context, attrs: AttributeSet?) : NestedScrollView(context, attrs) {
-
-    /**/override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int) {
-        super.onNestedScroll(target, dxConsumed, dyConsumed, 0, 0, type)
-    }
-
-    override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
-        return super.onNestedFling(target, velocityX, velocityY, true)
-    }
-    /**/
-}
