@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity() {
         for ((i, item) in listOfThings.withIndex()) {
             //i = 0
             val base = 1000
+            val btnWidth=80
             //erstelle linearlayout als halter für die gruppe
             var llForGroup = LinearLayout(this)
             llForGroup.setId(i*10+base)
@@ -137,14 +138,14 @@ class MainActivity : AppCompatActivity() {
             // add SHOW Datapoints button
             var btnShowDatapointsOfThing = Button(this)
             //btnShow1.setText(R.string.show_text)
-            btnShowDatapointsOfThing.text = "s"+(base+i*10+3).toString()
+            btnShowDatapointsOfThing.text = "R"//+(base+i*10+3).toString()
             //btnShow.setText(i)
             //btnShow.setText(1000+i)
             btnShowDatapointsOfThing.setId(base+i*10+3)
 
             btnShowDatapointsOfThing.layoutParams =
                 LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    btnWidth,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnShowDatapointsOfThing.setOnClickListener {
@@ -153,35 +154,16 @@ class MainActivity : AppCompatActivity() {
             }
             llForGroup.addView(btnShowDatapointsOfThing)
 
-            // add button Delete
-            var btnDelete = Button(this)
-            btnDelete.text = "-"+(base+i*10+4).toString()
-            //btnShow.setText(i)
-            //btnShow.setText(1000+i)
-            btnDelete.setId(base+i*10+4)
-
-            btnDelete.layoutParams =
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            btnDelete.setOnClickListener {
-                this.deleteThisThingFromThingListAndRefreshList(i,item)
-                //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
-            }
-            llForGroup.addView(btnDelete)
-            // Add element to LinearLayout
-
-            // add button update
+            // update button
             var btnUpdate = Button(this)
-            btnUpdate.text = "u"+(base+i*10+5).toString()
+            btnUpdate.text = "U"//+(base+i*10+5).toString()
             //btnShow.setText(i)
             //btnShow.setText(1000+i)
             btnUpdate.setId(base+i*10+5)
 
             btnUpdate.layoutParams =
                 LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    btnWidth,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnUpdate.setOnClickListener {
@@ -190,6 +172,25 @@ class MainActivity : AppCompatActivity() {
                 saveThingInThinglistAndRefresh(base+i*10+1,base+i*10+2, item)
             }
             llForGroup.addView(btnUpdate)
+
+            // delete button
+            var btnDelete = Button(this)
+            btnDelete.text = "D"//+(base+i*10+4).toString()
+            //btnShow.setText(i)
+            //btnShow.setText(1000+i)
+            btnDelete.setId(base+i*10+4)
+
+            btnDelete.layoutParams =
+                LinearLayout.LayoutParams(
+                    btnWidth,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            btnDelete.setOnClickListener {
+                this.deleteThisThingFromThingListAndRefreshList(i,item)
+                //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
+            }
+            llForGroup.addView(btnDelete)
+            // Add element to LinearLayout
 
             // Füge texte hinzu id
             /**/
