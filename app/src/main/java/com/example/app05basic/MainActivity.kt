@@ -187,73 +187,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
-    // BOTH things and datapoints
-    // TODO: mit der anderen Funktion zusammenführen durch paramter
-    private fun makeAddNewDatapointAreaVisible() {
-        var addNewDatapointContainerToHideOrShow =
-            findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
-        //addThingContainerToHideOrShow.visibility = View.VISIBLE
-        if (addNewDatapointContainerToHideOrShow.visibility == View.VISIBLE) {
-            addNewDatapointContainerToHideOrShow.visibility = View.GONE
-            // Werte zurücksetzen
-            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
-            etAddNewThingName.setText("newThing")
-            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
-            etAddNewThingValue.setText("ifb")
-        } else {
-            addNewDatapointContainerToHideOrShow.visibility = View.VISIBLE
-        }
-    }
-
-    // TODO: mit der anderen Funktion zusammenführen durch paramter
-    private fun makeAddNewThingAreaVisible() {
-        var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
-        //addThingContainerToHideOrShow.visibility = View.VISIBLE
-        if  (addThingContainerToHideOrShow.visibility == View.VISIBLE) {
-            addThingContainerToHideOrShow.visibility = View.GONE
-            // Werte zurücksetzen
-            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
-            etAddNewThingName.setText("newThing")
-            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
-            etAddNewThingValue.setText("ifb")
-        } else {
-            addThingContainerToHideOrShow.visibility = View.VISIBLE
-        }
-
-        //ALT////////////////////////////////////////
-/*
-        //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
-
-        val editTextNumber = findViewById<EditText>(R.id.et1)
-        val anzahlInt = editTextNumber.text.toString().toInt()
-        //var anzahlInt = anzahlString.toInt()
-        //var anzahlInt = 5
-        //if (anzahlInt != null) {
-        for (i in 1..anzahlInt) {
-            var btnShow = Button(this)
-            btnShow.setText(R.string.show_text)
-            btnShow.hint=(1000+i).toString()
-            //btnShow.setText(i)
-            //btnShow.setText(1000+i)
-            btnShow.setId(1000+i)
-
-            btnShow.layoutParams =
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            btnShow.setOnClickListener {
-                this.clickBtn(btnShow)
-                //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
-            }
-
-            // Add Button to LinearLayout
-            linearLayout?.addView(btnShow)
-        }*/
-    }
+    //DATAPOINTS
 
     // showDatapointsOfThing
     private fun refreshDatapointsDetailsScrollable(thing: Things) {
@@ -369,7 +303,7 @@ class MainActivity : AppCompatActivity() {
             }
             llForGroup.addView(btnUpdate)
 
-    /*            */
+            /*            */
             // Add ll to LinearLayoutToFill
             linearLayoutToFill?.addView(llForGroup)
             i++
@@ -461,6 +395,72 @@ class MainActivity : AppCompatActivity() {
         linearLayoutToClear.removeAllViews()
         val linearLayoutToClear2 = findViewById<LinearLayout>(R.id.llDetailsHeader)
         linearLayoutToClear2.removeAllViews()
+    }
+
+    // BOTH things and datapoints
+    // TODO: mit der anderen Funktion zusammenführen durch paramter
+    private fun makeAddNewDatapointAreaVisible() {
+        var addNewDatapointContainerToHideOrShow =
+            findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
+        //addThingContainerToHideOrShow.visibility = View.VISIBLE
+        if (addNewDatapointContainerToHideOrShow.visibility == View.VISIBLE) {
+            addNewDatapointContainerToHideOrShow.visibility = View.GONE
+            // Werte zurücksetzen
+            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+            etAddNewThingName.setText("newThing")
+            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+            etAddNewThingValue.setText("ifb")
+        } else {
+            addNewDatapointContainerToHideOrShow.visibility = View.VISIBLE
+        }
+    }
+
+    // TODO: mit der anderen Funktion zusammenführen durch paramter
+    private fun makeAddNewThingAreaVisible() {
+        var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
+        //addThingContainerToHideOrShow.visibility = View.VISIBLE
+        if  (addThingContainerToHideOrShow.visibility == View.VISIBLE) {
+            addThingContainerToHideOrShow.visibility = View.GONE
+            // Werte zurücksetzen
+            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+            etAddNewThingName.setText("newThing")
+            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+            etAddNewThingValue.setText("ifb")
+        } else {
+            addThingContainerToHideOrShow.visibility = View.VISIBLE
+        }
+
+        //ALT////////////////////////////////////////
+/*
+        //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
+
+        val editTextNumber = findViewById<EditText>(R.id.et1)
+        val anzahlInt = editTextNumber.text.toString().toInt()
+        //var anzahlInt = anzahlString.toInt()
+        //var anzahlInt = 5
+        //if (anzahlInt != null) {
+        for (i in 1..anzahlInt) {
+            var btnShow = Button(this)
+            btnShow.setText(R.string.show_text)
+            btnShow.hint=(1000+i).toString()
+            //btnShow.setText(i)
+            //btnShow.setText(1000+i)
+            btnShow.setId(1000+i)
+
+            btnShow.layoutParams =
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            btnShow.setOnClickListener {
+                this.clickBtn(btnShow)
+                //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
+            }
+
+            // Add Button to LinearLayout
+            linearLayout?.addView(btnShow)
+        }*/
     }
 
     //OLD STUFF
