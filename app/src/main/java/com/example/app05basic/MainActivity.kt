@@ -229,6 +229,24 @@ class MainActivity : AppCompatActivity() {
         linearLayout?.removeAllViews()
     }
 
+    // TODO: mit der anderen Funktion zusammenführen durch paramter
+    private fun makeAddNewDatapointAreaVisible() {
+        var addNewDatapointContainerToHideOrShow =
+            findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
+        //addThingContainerToHideOrShow.visibility = View.VISIBLE
+        if (addNewDatapointContainerToHideOrShow.visibility == View.VISIBLE) {
+            addNewDatapointContainerToHideOrShow.visibility = View.GONE
+            // Werte zurücksetzen
+            var etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+            etAddNewThingName.setText("newThing")
+            var etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+            etAddNewThingValue.setText("ifb")
+        } else {
+            addNewDatapointContainerToHideOrShow.visibility = View.VISIBLE
+        }
+    }
+
+    // TODO: mit der anderen Funktion zusammenführen durch paramter
     private fun makeAddNewThingAreaVisible() {
         var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
         //addThingContainerToHideOrShow.visibility = View.VISIBLE
@@ -310,6 +328,8 @@ class MainActivity : AppCompatActivity() {
         var btnAddDatapoint = Button(this)
         btnAddDatapoint.text = "+ "+(base+0*10+2).toString()
         btnAddDatapoint.setId(base+0*10+2)
+        //btnAddDatapoint.setId("btnAddDatapoint")
+        //btnAddDatapoint.id("ha")
         btnAddDatapoint.layoutParams =
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -318,6 +338,7 @@ class MainActivity : AppCompatActivity() {
         btnAddDatapoint.setOnClickListener {
             //var dp: DatenpunktInt = item
             //todo:write addDataPoint()
+            addDataPoint(thing)
             //this.dataRead(item,i)
             //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
         }
@@ -467,6 +488,18 @@ class MainActivity : AppCompatActivity() {
             i++
         }
 
+    }
+
+    private fun addDataPoint(thing: Things) {
+        var addNewDatapointContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
+        addNewDatapointContainerToHideOrShow.visibility = View.GONE
+        // Eingabe elemente Sichtbar machen
+
+        when (thing.datenliste){
+
+        }
+        thing.datenliste.add(DatenpunktInt(thing.name,thing.datenliste[thing.datenliste.size-1].id+1, LocalDateTime.now(),
+            LocalDateTime.now(),1))
     }
 
     private fun delteAllDatapoints(thing: Things) {
