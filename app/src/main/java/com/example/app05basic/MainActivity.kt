@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         //leere zuerst beide View listen
         removeAllViewsFromThingsLL()
         removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
-        //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
 
         //hole den fillContainer
         //val linearLayoutToFill = findViewById<LinearLayout>(R.id.llDetails)
@@ -91,24 +90,6 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
-
-            // Füge texte hinzu NAME
-            var etName = EditText(this)
-            //editTextGroup.setText(R.string.new_group_item_name)
-            //etName.text=Editable!("test")
-            var cs: CharSequence = listOfThings[i].name
-            //etName.setText(cs)
-            etName.setText(item.name)
-            //etName.setText(listOfThings[i].name)
-            etName.id=(base+i*10+1)
-            llForGroup.addView(etName)
-
-            // Füge texte hinzu id
-            var etId = EditText(this)
-            //editTextGroup.setText(R.string.new_group_item_name)
-            etId.setText(item.id.toString())
-            etId.id=base+i*10+2
-            llForGroup.addView(etId)
 
 
             // add SHOW Datapoints button
@@ -167,7 +148,25 @@ class MainActivity : AppCompatActivity() {
             }
             llForGroup.addView(btnUpdate)
 
-/*            */
+
+            // Füge texte hinzu id
+            var etId = EditText(this)
+            //editTextGroup.setText(R.string.new_group_item_name)
+            etId.setText(item.id.toString())
+            etId.id=base+i*10+2
+            llForGroup.addView(etId)
+
+            // Füge texte hinzu NAME
+            var etName = EditText(this)
+            //editTextGroup.setText(R.string.new_group_item_name)
+            //etName.text=Editable!("test")
+            var cs: CharSequence = listOfThings[i].name
+            //etName.setText(cs)
+            etName.setText(item.name)
+            //etName.setText(listOfThings[i].name)
+            etName.id=(base+i*10+1)
+            llForGroup.addView(etName)
+
             // Add ll to LinearLayoutToFill
             linearLayoutToFill?.addView(llForGroup)
             i++
