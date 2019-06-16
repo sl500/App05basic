@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         onCreateClean()
 
         createDummyLists()
-        listAllThingsInThingScrollable()
+        refreshThingsScrollable()
 
         var addThingContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewThingContainer)
         addThingContainerToHideOrShow.visibility = View.GONE
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
         // list things
         val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
-        btnListAllThingsInThingsScrollable?.setOnClickListener { listAllThingsInThingScrollable() }
+        btnListAllThingsInThingsScrollable?.setOnClickListener { refreshThingsScrollable() }
 
         // del all of id
         val btnDel = findViewById<Button>(R.id.btnDel)
@@ -47,12 +47,12 @@ class MainActivity : AppCompatActivity() {
 
         //btn Add new Thing to Thing list
         val btnAddNewThingToThingList = findViewById<Button>(R.id.btnAddNewThing)
-        btnAddNewThingToThingList?.setOnClickListener{addNewThingToThingList()}
+        btnAddNewThingToThingList?.setOnClickListener{addNewThingToThingListAndRefresh()}
     }
 
     //THINGS
     //NEW
-    private fun addNewThingToThingList() {
+    private fun addNewThingToThingListAndRefresh() {
         // hole name und wertart für das neue thing
         val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
         val etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
@@ -68,11 +68,13 @@ class MainActivity : AppCompatActivity() {
         var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
         listOfThings.add(newThing)
         //new aufbauen
-        listAllThingsInThingScrollable()
+        refreshThingsScrollable()
     }
 
     //NEW
-    private fun listAllThingsInThingScrollable() {
+    //listAllThingsInThingScrollable
+    //refreshThingsScrollable
+    private fun refreshThingsScrollable() {
         //leere zuerst beide View listen
         removeAllViewsFromThingsLL()
         removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
@@ -136,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnShowDatapointsOfThing.setOnClickListener {
-                this.showDatapointsOfThing(item,i)
+                this.refreshDatapointsDetailsScrollable(item,i)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnShowDatapointsOfThing)
@@ -295,87 +297,23 @@ class MainActivity : AppCompatActivity() {
             linearLayout?.addView(btnShow)
         }*/
     }
-    
 
-    private fun showDatapointsOfThing(thing: Things, id: Int) {
+    // showDatapointsOfThing
+    //refreshDatapointsDetailsScrollable
+    private fun refreshDatapointsDetailsScrollable(thing: Things, id: Int) {
         // leere zuerst details view
         removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
 
-        // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
-        //OKAY:("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val editTextOutput = findViewById<EditText>(R.id.et2)
-        //editTextOutput.setText(btn.id.toString())
-        Toast.makeText(this@MainActivity,  R.string.welcome_message, Toast.LENGTH_LONG).show()
-        ///////////////////////////
         val base = 2000
-        // hole fillcontainer für header
-        val linearLayoutToFillHeader = findViewById<LinearLayout>(R.id.llDetailsHeader)
 
-        // füge text hinzu im header von was die aktuellen daten sind
-        var etThing = EditText(this)
-        etThing.setText(thing.name)
-        etThing.id=(base+0*10+1)
-        linearLayoutToFillHeader.addView(etThing)
+        fillDatapointsDetailsScrollableHeader(thing, base)
 
-        // add button to add datapoint
-        var btnAddDatapoint = Button(this)
-        btnAddDatapoint.text = "+ "+(base+0*10+2).toString()
-        btnAddDatapoint.setId(base+0*10+2)
-        //btnAddDatapoint.setId("btnAddDatapoint")
-        //btnAddDatapoint.id("ha")
-        btnAddDatapoint.layoutParams =
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        btnAddDatapoint.setOnClickListener {
-            //var dp: DatenpunktInt = item
-            //todo:write addDataPoint()
-            addDataPoint(thing)
-            //this.dataRead(item,i)
-            //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
-        }
-        linearLayoutToFillHeader.addView(btnAddDatapoint)
+        fillDatapointsDetailsScrollableList(thing, base)
 
-        // add button to add datapoint
-        var btnClearDetailsList = Button(this)
-        btnClearDetailsList.text = "c"+(base+0*10+3).toString()
-        btnClearDetailsList.setId(base+0*10+3)
-        btnClearDetailsList.layoutParams =
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        btnClearDetailsList.setOnClickListener {
-            //var dp: DatenpunktInt = item
-            //OKAY:write add removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
-            //this.dataRead(item,i)
-            removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
-            //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
-        }
-        linearLayoutToFillHeader.addView(btnClearDetailsList)
+    }
 
-
-        // add button to add datapoint
-        var btnDeleteAllDatapoint = Button(this)
-        btnDeleteAllDatapoint.text = "D"+(base+0*10+4).toString()
-        btnDeleteAllDatapoint.setId(base+0*10+4)
-        btnDeleteAllDatapoint.layoutParams =
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        btnDeleteAllDatapoint.setOnClickListener {
-            //var dp: DatenpunktInt = item
-            //OKAY:write add DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea()
-            DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea(thing)
-            //this.dataRead(item,i)
-            //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
-        }
-        linearLayoutToFillHeader.addView(btnDeleteAllDatapoint)
-
-
-         //hole den fillContainer für datenpunkte
+    private fun fillDatapointsDetailsScrollableList(thing: Things, base: Int) {
+        //hole den fillContainer für datenpunkte
         val linearLayoutToFill = findViewById<LinearLayout>(R.id.llDetails)
         //val howManyNewElementsSource = findViewById<EditText>(R.id.et1)
         //var howManyNew = howManyNewElementsSource.text.toString().toInt()
@@ -391,7 +329,7 @@ class MainActivity : AppCompatActivity() {
             //val base = 2000
             //erstelle linearlayout als halter für die gruppe
             var llForGroup = LinearLayout(this)
-            llForGroup.setId(i*10+base)
+            llForGroup.setId(i * 10 + base)
             llForGroup.setPadding(4)
             llForGroup.layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -403,13 +341,13 @@ class MainActivity : AppCompatActivity() {
             // Füge texte hinzu NAME
             var etName = EditText(this)
             etName.setText(item.name)
-            etName.id=(base+i*10+1)
+            etName.id = (base + i * 10 + 1)
             llForGroup.addView(etName)
 
             // Füge texte hinzu id
             var etId = EditText(this)
             etId.setText(item.id.toString())
-            etId.id=base+i*10+2
+            etId.id = base + i * 10 + 2
             llForGroup.addView(etId)
 
             // Füge texte hinzu value
@@ -419,13 +357,13 @@ class MainActivity : AppCompatActivity() {
                 is datenpunktFloat -> etValue.setText((item).value.toString())
                 is datenpunktBoolean -> etValue.setText((item).value.toString())
             }
-            etValue.id=base+i*10+3
+            etValue.id = base + i * 10 + 3
             llForGroup.addView(etValue)
 
             // add READ button
             var btnRead = Button(this)
-            btnRead.text = "+"+(base+i*10+4).toString()
-            btnRead.setId(base+i*10+4)
+            btnRead.text = "+" + (base + i * 10 + 4).toString()
+            btnRead.setId(base + i * 10 + 4)
             btnRead.layoutParams =
                 LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -441,9 +379,9 @@ class MainActivity : AppCompatActivity() {
 
             // add button Delete
             var btnDelete = Button(this)
-            btnDelete.text = "-"+(base+i*10+5).toString()
+            btnDelete.text = "-" + (base + i * 10 + 5).toString()
 
-            btnDelete.setId(base+i*10+5)
+            btnDelete.setId(base + i * 10 + 5)
 
             btnDelete.layoutParams =
                 LinearLayout.LayoutParams(
@@ -460,8 +398,8 @@ class MainActivity : AppCompatActivity() {
 
             // add button update
             var btnUpdate = Button(this)
-            btnUpdate.text = "u"+(base+i*10+6).toString()
-            btnUpdate.setId(base+i*10+6)
+            btnUpdate.text = "u" + (base + i * 10 + 6).toString()
+            btnUpdate.setId(base + i * 10 + 6)
 
             btnUpdate.layoutParams =
                 LinearLayout.LayoutParams(
@@ -475,12 +413,68 @@ class MainActivity : AppCompatActivity() {
             }
             llForGroup.addView(btnUpdate)
 
-/*            */
+    /*            */
             // Add ll to LinearLayoutToFill
             linearLayoutToFill?.addView(llForGroup)
             i++
         }
+    }
 
+    private fun fillDatapointsDetailsScrollableHeader(thing: Things, base: Int) {
+        // hole fillcontainer für header
+        val linearLayoutToFillHeader = findViewById<LinearLayout>(R.id.llDetailsHeader)
+
+        // füge text hinzu im header von was die aktuellen daten sind
+        var etThing = EditText(this)
+        etThing.setText(thing.name)
+        etThing.id = (base + 0 * 10 + 1)
+        linearLayoutToFillHeader.addView(etThing)
+
+        // add button to add datapoint
+        var btnAddDatapoint = Button(this)
+        btnAddDatapoint.text = "+ " + (base + 0 * 10 + 2).toString()
+        btnAddDatapoint.setId(base + 0 * 10 + 2)
+        btnAddDatapoint.layoutParams =
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        btnAddDatapoint.setOnClickListener {
+            //todo:write addDataPoint()
+            addDataPoint(thing)
+        }
+        linearLayoutToFillHeader.addView(btnAddDatapoint)
+
+        // add button to clear datapoint details list
+        var btnClearDetailsList = Button(this)
+        btnClearDetailsList.text = "c" + (base + 0 * 10 + 3).toString()
+        btnClearDetailsList.setId(base + 0 * 10 + 3)
+        btnClearDetailsList.layoutParams =
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        btnClearDetailsList.setOnClickListener {
+            removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
+        }
+        linearLayoutToFillHeader.addView(btnClearDetailsList)
+
+
+        // add button to DELETE all datapoints (DANGER)
+        var btnDeleteAllDatapoint = Button(this)
+        btnDeleteAllDatapoint.text = "D" + (base + 0 * 10 + 4).toString()
+        btnDeleteAllDatapoint.setId(base + 0 * 10 + 4)
+        btnDeleteAllDatapoint.layoutParams =
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        btnDeleteAllDatapoint.setOnClickListener {
+            DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea(thing)
+        }
+        linearLayoutToFillHeader.addView(btnDeleteAllDatapoint)
+
+        //HEADER ENDE
     }
 
     private fun addDataPoint(thing: Things) {
