@@ -76,10 +76,9 @@ class MainActivity : AppCompatActivity() {
 
         howManyNew=listOfThings.size
 
-        var i = 0
         //erstelle die anzahl an elementen und füge sie hinzu
         //for (i in 1..howManyNew) {
-        for (item in listOfThings) {
+        for ((i, item) in listOfThings.withIndex()) {
             //i = 0
             val base = 1000
             //erstelle linearlayout als halter für die gruppe
@@ -169,7 +168,6 @@ class MainActivity : AppCompatActivity() {
 
             // Add ll to LinearLayoutToFill
             linearLayoutToFill?.addView(llForGroup)
-            i++
         }
     }
 
@@ -535,23 +533,23 @@ class MainActivity : AppCompatActivity() {
             testObject("name2",2,2.1F),
             testObject("name3",3,3.1F)
         )*/
-        var list1 = mutableListOf<daten>(
-            DatenpunktInt("things1",1, LocalDateTime.now(), LocalDateTime.now(),11),
-            DatenpunktInt("things1",2, LocalDateTime.now(), LocalDateTime.now(),12),
-            DatenpunktInt("things1",3, LocalDateTime.now(), LocalDateTime.now(),13),
-            DatenpunktInt("things1",4, LocalDateTime.now(), LocalDateTime.now(),14)
+        var datapointList1 = mutableListOf<daten>(
+            DatenpunktInt("things1",12, LocalDateTime.now(), LocalDateTime.now(),11),
+            DatenpunktInt("things1",22, LocalDateTime.now(), LocalDateTime.now(),12),
+            DatenpunktInt("things1",32, LocalDateTime.now(), LocalDateTime.now(),13),
+            DatenpunktInt("things1",42, LocalDateTime.now(), LocalDateTime.now(),14)
         )
-        var things1: Things = Things("t1_kg",1, LocalDateTime.now(), LocalDateTime.now(),list1)
+        var dummyThing1: Things = Things("t1_kg",142, LocalDateTime.now(), LocalDateTime.now(),datapointList1)
 
-        var list2 = mutableListOf<daten>(
-            DatenpunktInt("things2",1, LocalDateTime.now(), LocalDateTime.now(),21),
-            DatenpunktInt("things2",2, LocalDateTime.now(), LocalDateTime.now(),22),
-            DatenpunktInt("things2",3, LocalDateTime.now(), LocalDateTime.now(),23),
-            DatenpunktInt("things2",4, LocalDateTime.now(), LocalDateTime.now(),24)
+        var datapointList2 = mutableListOf<daten>(
+            DatenpunktInt("things2",21, LocalDateTime.now(), LocalDateTime.now(),21),
+            DatenpunktInt("things2",22, LocalDateTime.now(), LocalDateTime.now(),22),
+            DatenpunktInt("things2",23, LocalDateTime.now(), LocalDateTime.now(),23),
+            DatenpunktInt("things2",24, LocalDateTime.now(), LocalDateTime.now(),24)
         )
-        var things2: Things = Things("t2_cm",2, LocalDateTime.now(), LocalDateTime.now(),list2)
+        var dummyThing2: Things = Things("t2_cm",223, LocalDateTime.now(), LocalDateTime.now(),datapointList2)
 
-        listOfThings = mutableListOf<Things>(things1,things2)
+        listOfThings = mutableListOf<Things>(dummyThing1,dummyThing2)
         //var n = listOfThings.size
     }
 
