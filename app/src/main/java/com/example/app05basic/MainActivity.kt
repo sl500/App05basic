@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //THINGS
+
     //NEW
     private fun addNewThingToThingListAndRefresh() {
         // hole name und wertart für das neue thing
@@ -73,7 +74,6 @@ class MainActivity : AppCompatActivity() {
 
     //NEW
     //listAllThingsInThingScrollable
-    //refreshThingsScrollable
     private fun refreshThingsScrollable() {
         //leere zuerst beide View listen
         removeAllViewsFromThingsLL()
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnShowDatapointsOfThing.setOnClickListener {
-                this.refreshDatapointsDetailsScrollable(item,i)
+                this.refreshDatapointsDetailsScrollable(item)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnShowDatapointsOfThing)
@@ -187,50 +187,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //OLD
-    private fun removeOneSpecificViewGroupFromThingLL(idParamToDelte: Int) {
-        //R.id.editTextOutput
-        //idParamToDelte
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val editTextNumber = findViewById<EditText>(R.id.et2)
-        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
-        //linearLayout?.removeViewAt(editTextNumber.text.toString().toInt())
-        var intNumberIdToDelete = editTextNumber.text.toString().toInt()
 
-        if (intNumberIdToDelete < 10000) {
-            var elementToDelete = findViewById<Button>(intNumberIdToDelete)
-            linearLayout?.removeView(elementToDelete)
-        }
-        if (intNumberIdToDelete > 10000) {
-            intNumberIdToDelete = intNumberIdToDelete / 10
-            intNumberIdToDelete = intNumberIdToDelete * 10
-
-
-            var elementToDelete = findViewById<LinearLayout>(intNumberIdToDelete)
-            linearLayout?.removeView(elementToDelete)
-        }
-        //linearLayout?.removeView(elementToDelete)
-        editTextNumber.setText("output")
-    }
-
-    //OLD and umständlich
-    private fun writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btn: Button) {
-
-        // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
-        //OKAY("not implemented") //To change body of created functions use File | Settings | File Templates.
-        //TODO("war hilfsbtn, sollte funktion bekommen entweder delete ")
-        val editTextOutput = findViewById<EditText>(R.id.et2)
-        editTextOutput.setText(btn.id.toString())
-
-        Toast.makeText(this@MainActivity,  R.string.welcome_message, Toast.LENGTH_LONG).show()
-    }
-
-    //OLD
-    private fun removeAllViewsFromThingsLL() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
-        linearLayout?.removeAllViews()
-    }
 
     // BOTH things and datapoints
     // TODO: mit der anderen Funktion zusammenführen durch paramter
@@ -299,8 +256,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // showDatapointsOfThing
-    //refreshDatapointsDetailsScrollable
-    private fun refreshDatapointsDetailsScrollable(thing: Things, id: Int) {
+    private fun refreshDatapointsDetailsScrollable(thing: Things) {
         // leere zuerst details view
         removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
 
@@ -477,6 +433,8 @@ class MainActivity : AppCompatActivity() {
         //HEADER ENDE
     }
 
+    //makeAddNewDatapointAreaVisible
+
     private fun addDataPoint(thing: Things) {
         var addNewDatapointContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
         addNewDatapointContainerToHideOrShow.visibility = View.GONE
@@ -487,6 +445,8 @@ class MainActivity : AppCompatActivity() {
         }
         thing.datenliste.add(DatenpunktInt(thing.name,thing.datenliste[thing.datenliste.size-1].id+1, LocalDateTime.now(),
             LocalDateTime.now(),1))
+
+        refreshDatapointsDetailsScrollable(thing)
     }
 
     private fun DANGERdelteAllDatapointsFromThingAndRemoveCorrespondingViewsInDetailsArea(thing: Things) {
@@ -501,6 +461,53 @@ class MainActivity : AppCompatActivity() {
         linearLayoutToClear.removeAllViews()
         val linearLayoutToClear2 = findViewById<LinearLayout>(R.id.llDetailsHeader)
         linearLayoutToClear2.removeAllViews()
+    }
+
+    //OLD STUFF
+
+    //OLD
+    private fun removeOneSpecificViewGroupFromThingLL(idParamToDelte: Int) {
+        //R.id.editTextOutput
+        //idParamToDelte
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val editTextNumber = findViewById<EditText>(R.id.et2)
+        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
+        //linearLayout?.removeViewAt(editTextNumber.text.toString().toInt())
+        var intNumberIdToDelete = editTextNumber.text.toString().toInt()
+
+        if (intNumberIdToDelete < 10000) {
+            var elementToDelete = findViewById<Button>(intNumberIdToDelete)
+            linearLayout?.removeView(elementToDelete)
+        }
+        if (intNumberIdToDelete > 10000) {
+            intNumberIdToDelete = intNumberIdToDelete / 10
+            intNumberIdToDelete = intNumberIdToDelete * 10
+
+
+            var elementToDelete = findViewById<LinearLayout>(intNumberIdToDelete)
+            linearLayout?.removeView(elementToDelete)
+        }
+        //linearLayout?.removeView(elementToDelete)
+        editTextNumber.setText("output")
+    }
+
+    //OLD and umständlich
+    private fun writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btn: Button) {
+
+        // funktion für klicken der geaddeden buttons, macht toast and füllt output textfield
+        //OKAY("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //TODO("war hilfsbtn, sollte funktion bekommen entweder delete ")
+        val editTextOutput = findViewById<EditText>(R.id.et2)
+        editTextOutput.setText(btn.id.toString())
+
+        Toast.makeText(this@MainActivity,  R.string.welcome_message, Toast.LENGTH_LONG).show()
+    }
+
+    //OLD
+    private fun removeAllViewsFromThingsLL() {
+        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val linearLayout = findViewById<LinearLayout>(R.id.llThings)
+        linearLayout?.removeAllViews()
     }
 
     //BASIC STUF
