@@ -228,10 +228,9 @@ class MainActivity : AppCompatActivity() {
 
         //howManyNew=listOfThings.size
 
-        var i = 0
         //erstelle die anzahl an elementen und füge sie hinzu
         //for (i in 1..howManyNew) {
-        for (item in thing.datenliste) {
+        for ((i, item) in thing.datenliste.withIndex()) {
             //i = 0
             //val base = 2000
             //erstelle linearlayout als halter für die gruppe
@@ -244,6 +243,12 @@ class MainActivity : AppCompatActivity() {
             )
             //DatenpunktInt("things2",1, LocalDateTime.now(), LocalDateTime.now(),21),
             //string id.toString() value.toString() btn update, delete, add
+
+            //füge nummer hinzu
+            var etNummer = TextView(this)
+            etNummer.setText(thing.datenliste.indexOf(item).toString())
+            etNummer.setId(base+i*10+8)
+            llForGroup.addView(etNummer)
 
             // Füge texte hinzu NAME
             var etName = EditText(this)
@@ -298,6 +303,7 @@ class MainActivity : AppCompatActivity() {
             btnDelete.setOnClickListener {
                 //todo write datenDelete
                 //this.clickBtn(btnDelete)
+                deleteThisDatapointFromListAndRefresh(i,item, thing)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
             llForGroup.addView(btnDelete)
@@ -323,8 +329,12 @@ class MainActivity : AppCompatActivity() {
             /*            */
             // Add ll to LinearLayoutToFill
             linearLayoutToFill?.addView(llForGroup)
-            i++
         }
+    }
+
+    private fun deleteThisDatapointFromListAndRefresh(i: Int, item: daten, thing: Things) {
+        thing.datenliste.remove(item)
+        refreshDatapointsDetailsScrollable(thing)
     }
 
     private fun fillDatapointsDetailsScrollableHeader(thing: Things, base: Int) {
