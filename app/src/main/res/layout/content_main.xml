@@ -265,6 +265,8 @@
                         app:maxHeight="300dp"
                         android:fillViewport="true"
                         android:background="@android:color/black">
+                    <HorizontalScrollView android:layout_width="wrap_content"
+                                          android:layout_height="match_parent">
                     <LinearLayout
                             android:id="@+id/llDetails"
                             android:layout_width="match_parent"
@@ -341,7 +343,9 @@
                                     android:text="+ new Thing" android:textAlignment="center"/>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
+                    </HorizontalScrollView>
                 </com.bskim.maxheightscrollview.widgets.MaxHeightNestedScrollView>
+
                 <TextView
                         android:id="@+id/tvEnd"
                         android:layout_width="wrap_content"
