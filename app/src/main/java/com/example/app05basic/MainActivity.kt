@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         refreshThingsScrollable()
 
         configerButons()
-
-        //refreshThingsScrollable()
     }
 
     private fun configerButons() {
@@ -66,8 +64,40 @@ class MainActivity : AppCompatActivity() {
 
     //THINGS
 
-    //NEW
-    //listAllThingsInThingScrollable
+    private fun deleteThisThingFromThingListAndRefreshList(i: Int, item: Things) {
+        //delete item
+        listOfThings.removeAt(i)
+        //listOfThings.remove(item)
+        refreshThingsScrollable()
+    }
+
+    private fun addNewThingToThingListAndRefresh() {
+        // hole name und wertart für das neue thing
+        val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
+        val etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
+
+        /*
+        when (etAddNewThingValue.text.toString()) {
+            "i" -> var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),MutableList<daten>())
+            /*"f" ->
+            "b" -> */
+        }
+        */
+        //var listX = mutableListOf<daten>()
+        var newThing = Things(etAddNewThingName.text.toString(),(1000*Math.random()).toInt(), LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
+        listOfThings.add(newThing)
+        //new aufbauen
+        refreshThingsScrollable()
+    }
+
+    private fun saveThingInThinglistAndRefresh(idName: Int, idId: Int,thing: Things){
+        val etName = findViewById<EditText>(idName)
+        thing.name = etName.text.toString()
+        val etId = findViewById<EditText>(idId)
+        thing.id = etId.text.toString().toInt()
+        refreshThingsScrollable()
+    }
+
     private fun refreshThingsScrollable() {
         //leere zuerst beide View listen
         removeAllViewsFromThingsLL()
@@ -136,7 +166,6 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnDelete.setOnClickListener {
-                this.writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btnDelete)
                 this.deleteThisThingFromThingListAndRefreshList(i,item)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
             }
@@ -156,8 +185,9 @@ class MainActivity : AppCompatActivity() {
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             btnUpdate.setOnClickListener {
-                this.writeButtonIdStringToetOutputSoThatRemoveOneSpecificKnowsWhatToRemove(btnUpdate)
                 //Toast.makeText(this@MainActivity, R.string.welcome_message, Toast.LENGTH_LONG).show()
+
+                saveThingInThinglistAndRefresh(base+i*10+1,base+i*10+2, item)
             }
             llForGroup.addView(btnUpdate)
 
@@ -185,36 +215,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteThisThingFromThingListAndRefreshList(i: Int, item: Things) {
-        //delete item
-        listOfThings.removeAt(i)
-        //listOfThings.remove(item)
-        refreshThingsScrollable()
-    }
-
-    //NEW
-    private fun addNewThingToThingListAndRefresh() {
-        // hole name und wertart für das neue thing
-        val etAddNewThingName = findViewById<EditText>(R.id.etNewThingName)
-        val etAddNewThingValue = findViewById<EditText>(R.id.etNewThingValue)
-
-        /*
-        when (etAddNewThingValue.text.toString()) {
-            "i" -> var newThing = Things(etAddNewThingName.text.toString(),listOfThings.size, LocalDateTime.now(), LocalDateTime.now(),MutableList<daten>())
-            /*"f" ->
-            "b" -> */
-        }
-        */
-        //var listX = mutableListOf<daten>()
-        var newThing = Things(etAddNewThingName.text.toString(),(1000*Math.random()).toInt(), LocalDateTime.now(), LocalDateTime.now(),mutableListOf<daten>())
-        listOfThings.add(newThing)
-        //new aufbauen
-        refreshThingsScrollable()
-    }
-
     //DATAPOINTS
 
-    // showDatapointsOfThing
     private fun refreshDatapointsDetailsScrollable(thing: Things) {
         // leere zuerst details view
         removeViewsFromLLDetailsAndLLDetailsHeaderInDetailsScrollablelist()
@@ -401,8 +403,6 @@ class MainActivity : AppCompatActivity() {
 
         //HEADER ENDE
     }
-
-    //makeAddNewDatapointAreaVisible
 
     private fun addDataPoint(thing: Things) {
         var addNewDatapointContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
