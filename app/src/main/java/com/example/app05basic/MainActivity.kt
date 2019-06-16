@@ -25,11 +25,17 @@ class MainActivity : AppCompatActivity() {
         onCreateClean()
 
         createDummyLists()
+
         refreshThingsScrollable()
 
+        configerButons()
+    }
+
+    private fun configerButons() {
         // add amount
         val btnAddThingToTrack = findViewById<Button>(R.id.btnAdd)
         btnAddThingToTrack?.setOnClickListener { makeAddNewThingAreaVisible() }
+        
         // list things
         val btnListAllThingsInThingsScrollable = findViewById<Button>(R.id.btnListAllThings)
         btnListAllThingsInThingsScrollable?.setOnClickListener { refreshThingsScrollable() }
@@ -44,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         //btn Add new Thing to Thing list
         val btnAddNewThingToThingList = findViewById<Button>(R.id.btnAddNewThing)
-        btnAddNewThingToThingList?.setOnClickListener{addNewThingToThingListAndRefresh()}
+        btnAddNewThingToThingList?.setOnClickListener { addNewThingToThingListAndRefresh() }
     }
 
     //THINGS
