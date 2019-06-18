@@ -351,7 +351,7 @@ class MainActivity : AppCompatActivity() {
     private fun fillDatapointsDetailsScrollableHeader(thing: Things, base: Int) {
         // hole fillcontainer für header
         val linearLayoutToFillHeader = findViewById<LinearLayout>(R.id.llDetailsHeader)
-
+        val baseadd=1000
         // füge text hinzu im header von was die aktuellen daten sind
         var etThing = EditText(this)
         etThing.setText(thing.name)
@@ -360,8 +360,8 @@ class MainActivity : AppCompatActivity() {
 
         // add button to add datapoint
         var btnAddDatapoint = Button(this)
-        btnAddDatapoint.text = "+ " + (base + 0 * 10 + 2).toString()
-        btnAddDatapoint.setId(base + 0 * 10 + 2)
+        btnAddDatapoint.text = "+ " + (base + baseadd + 0 * 10 + 2).toString()
+        btnAddDatapoint.setId(base + baseadd + 0 * 10 + 2)
         btnAddDatapoint.layoutParams =
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -406,9 +406,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addDataPoint(thing: Things) {
-        var addNewDatapointContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.addNewDatapointContainer)
-        addNewDatapointContainerToHideOrShow.visibility = View.GONE
+        //var addNewDatapointContainerToHideOrShow = findViewById<androidx.constraintlayout.widget.ConstraintLayout>()
+        //addNewDatapointContainerToHideOrShow.visibility = View.GONE
         // Eingabe elemente Sichtbar machen
+        switchElementVisibility(R.id.addNewDatapointContainer)
 
         when (thing.datenliste){
 
