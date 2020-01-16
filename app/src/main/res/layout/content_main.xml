@@ -8,6 +8,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
         tools:context=".MainActivity">
+    <!--llBase-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,6 +16,7 @@
         android:layout_margin="5dp"
         android:background="@color/colorPrimary"
         android:id="@+id/llBase">
+        <!--llBase-->
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,8 +46,6 @@
                     app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.25" tools:text="ad">
             </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/headContainer"
@@ -263,22 +263,38 @@
                     </HorizontalScrollView>
                 </com.bskim.maxheightscrollview.widgets.MaxHeightNestedScrollView>
 
+                <!--app:layout_constraintBottom_toTopOf="@+id/addNewDatapointContainer"-->
+
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/llDetailsHeader"
                         android:orientation="horizontal"
+
                     >
-                    <TextView
+                <!--
+                     app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="parent"
+                        -->
+                   <TextView
                             android:id="@+id/tvDetailsHeader"
                             android:text="DETAILS:"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:background="@color/colorAccent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toTopOf="parent"
                     />
 
                 </LinearLayout>
+
+                <!-- hier hin-->
+
 
                 <com.bskim.maxheightscrollview.widgets.MaxHeightNestedScrollView
                         android:id="@+id/nvDetails"
@@ -303,7 +319,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:background="@color/colorAccent"
-                                android:visibility="invisible"
+                                android:visibility="gone"
                         />
                         <!-- addNewDatapointContainer zum an und ausblenden-->
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -361,8 +377,8 @@
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
-
-                                    android:text="+ new Thing" android:textAlignment="center"/>
+                                    android:text="+ new Thing" android:textAlignment="center"
+                            />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                     </HorizontalScrollView>
